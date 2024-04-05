@@ -3,6 +3,8 @@ package com.pgcc.certificationtracker.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class User {
 	@NotBlank
 	@Column(unique=true)
 	private String username;
+	@JsonIgnore
 	@NotBlank
 	@Column(unique=true)
 	private String password;

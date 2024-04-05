@@ -52,7 +52,7 @@ public class UserTest {
 	@DisplayName("tests password")
 	void test1() {
 		assertNotNull(user);
-		assertEquals("1234", user.getPassword());
+		assertEquals("Daush@1115", user.getPassword());
 	}
 	
 	@Test
