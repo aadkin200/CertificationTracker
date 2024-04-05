@@ -12,5 +12,6 @@ import com.pgcc.certificationtracker.entities.Certification;
 public interface CertificationRepository extends JpaRepository<Certification, Integer>{
 
 	List<Certification> findByUser_Username(String username);
+	List<Certification> findByUser_Id(int id);
 	
 }
