@@ -21,6 +21,8 @@ import { CertificationComponent } from './components/certification/certification
 import { AllCertificationComponent } from './components/all-certification/all-certification.component';
 import { UserFeedComponent } from './components/user-feed/user-feed.component';
 import { AuthInterceptor } from './intercept/auth-interceptor';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { InsightsDashboardComponent } from './components/insights-dashboard/insights-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { AuthInterceptor } from './intercept/auth-interceptor';
     CertificationComponent,
     AllCertificationComponent,
     UserFeedComponent,
+    SignUpComponent,
+    InsightsDashboardComponent
   ],
   imports: [
     BrowserModule,

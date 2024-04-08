@@ -45,14 +45,23 @@
           class="dropdown-menu"
           aria-labelledby="navbarDropdown"
         >
-          <a class="dropdown-item text-white" href="#">Your Certifications</a>
-          <a class="dropdown-item text-white" href="#"
-            >Certific Insights Dashboard</a
+          <a class="dropdown-item text-white" [routerLink]="['certifications']"
+            >Your Certifications</a
+          >
+          <a
+            class="dropdown-item text-white"
+            [routerLink]="['insight-dashboard']"
+            >Certificate Insights Dashboard</a
+          >
+          <a class="dropdown-item text-white" [routerLink]="['user-feed']"
+            >All Certifications</a
           >
         </div>
       </li>
     </ul>
 
-    <a class="nav-link text-white scooch-left" href="#">profile</a>
+    <a class="nav-link text-white scooch-left" [routerLink]="['profile']"
+      >profile</a
+    >
   </div>
 </nav>

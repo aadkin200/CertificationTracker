@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   login(user: User) {
     // {
-    //   "entry": "server.ts"
+    //   "entry": "server.ts"  --ssr
     // }
     console.log(user.username);
     console.log(user.password);
