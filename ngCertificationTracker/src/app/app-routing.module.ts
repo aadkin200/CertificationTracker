@@ -5,6 +5,7 @@ import { CertificationComponent } from './components/certification/certification
 import { ProfileComponent } from './components/profile/profile.component';
 import { AllCertificationComponent } from './components/all-certification/all-certification.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserFeedComponent } from './components/user-feed/user-feed.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'all-certification', component: AllCertificationComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'user-feed', component: UserFeedComponent },
 ];
 
 @NgModule({

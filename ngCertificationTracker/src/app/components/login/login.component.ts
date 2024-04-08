@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(user: User) {
+    // {
+    //   "entry": "server.ts"
+    // }
     console.log(user.username);
     console.log(user.password);
     this.auth.login(user.username, user.password).subscribe(
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
             localStorage.getItem('id_token')
         );
         console.log('LoginComponet.login(): user logged in');
-        this.router.navigateByUrl('/certifications');
+        this.router.navigateByUrl('/user-feed');
       },
       (fail) => {
         this.router.navigateByUrl('/home');

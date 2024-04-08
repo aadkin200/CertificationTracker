@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
   NgbCarousel,
   NgbDropdown,
@@ -19,9 +19,20 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CertificationComponent } from './components/certification/certification.component';
 import { AllCertificationComponent } from './components/all-certification/all-certification.component';
+import { UserFeedComponent } from './components/user-feed/user-feed.component';
+import { AuthInterceptor } from './intercept/auth-interceptor';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, NavbarComponent, ProfileComponent, CertificationComponent, AllCertificationComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    NavbarComponent,
+    ProfileComponent,
+    CertificationComponent,
+    AllCertificationComponent,
+    UserFeedComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +40,10 @@ import { AllCertificationComponent } from './components/all-certification/all-ce
     HttpClientModule,
     NgbModule,
   ],
-  providers: [provideClientHydration()],
+  providers: [
+    provideClientHydration(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
