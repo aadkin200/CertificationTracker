@@ -1,20 +1,41 @@
-<p>login works!</p>
-<form>
-  <label for="username">Username</label>
-  <input
-    type="text"
-    placeholder="Username"
-    name="username"
-    [(ngModel)]="loginUser.username"
-  />
-  <br />
-  <label for="password">Password</label>
-  <input
-    type="password"
-    placeholder="Password"
-    name="password"
-    [(ngModel)]="loginUser.password"
-  />
-  <br />
-  <button class="btn btn-primary" (click)="login(loginUser)">Login</button>
-</form>
+<div class="halfway">
+  <form>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">Username</label>
+      <input
+        type="email"
+        id="form2Example1"
+        class="form-control"
+        [(ngModel)]="loginUser.username"
+        name="username"
+      />
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Password</label>
+      <input
+        [(ngModel)]="loginUser.password"
+        type="password"
+        id="form2Example2"
+        class="form-control"
+        name="password"
+      />
+    </div>
+
+    <!-- Submit button -->
+    <button
+      type="submit"
+      class="btn btn-primary btn-block mb-4"
+      (click)="login(loginUser)"
+    >
+      Sign in
+    </button>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Not a member? <a href="#!">Register</a></p>
+    </div>
+  </form>
+</div>

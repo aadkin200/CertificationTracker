@@ -39,7 +39,7 @@ public class User {
 	@Column(name="updated_at")
 	private LocalDateTime updatedAt;
 	@OneToMany(mappedBy="user")
-	private List<Certification> certification;
+	private List<Certification> certifications;
 	private boolean active;
 	private String role;
 	
@@ -75,7 +75,7 @@ public class User {
 	}
 	
 	public User(int id, String username, String password, String email, String firstName, String lastName,
-			boolean admin, LocalDateTime createdAt, LocalDateTime updatedAt, List<Certification> certification) {
+			boolean admin, LocalDateTime createdAt, LocalDateTime updatedAt, List<Certification> certifications) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -86,15 +86,15 @@ public class User {
 		this.admin = admin;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.certification = certification;
+		this.certifications = certifications;
 	}
 
-	public List<Certification> getCertification() {
-		return certification;
+	public List<Certification> getCertifications() {
+		return certifications;
 	}
 
-	public void setCertification(List<Certification> certification) {
-		this.certification = certification;
+	public void setCertifications(List<Certification> certification) {
+		this.certifications = certification;
 	}
 
 	@Override

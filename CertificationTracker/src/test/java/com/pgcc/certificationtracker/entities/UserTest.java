@@ -59,8 +59,8 @@ public class UserTest {
 	@DisplayName("user all certs")
 	void test2() {
 		assertNotNull(user);
-		assertEquals("A+ CE", user.getCertification().get(1).getName());
-		assertEquals("Security+ CE", user.getCertification().get(0).getName());
+		assertEquals("A+ CE", user.getCertifications().get(1).getName());
+		assertEquals("Security+ CE", user.getCertifications().get(0).getName());
 	}
 
 }

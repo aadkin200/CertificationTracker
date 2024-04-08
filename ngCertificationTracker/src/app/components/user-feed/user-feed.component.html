@@ -1,8 +1,69 @@
-<p>user-feed works!</p>
-<div>
-  <div *ngFor="let user of users">
-    <p>{{ user.firstName }} {{ user.lastName }}</p>
-    <p>{{ user.email }}</p>
-    <p>test</p>
+<div class="container roomy">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Certification Holder</div>
+      <div class="panel-body">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Fist Name</th>
+              <th>Last Name</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let user of viewUsers">
+            <tr
+              data-toggle="collapse"
+              attr.data-target="#demo{{ user.id }}"
+              class="accordion-toggle"
+            >
+              <td>
+                <button class="btn btn-default btn-xs">
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+              </td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+            </tr>
+
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div class="accordian-body collapse" id="demo{{ user.id }}">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr class="info">
+                        <th>Certification</th>
+                        <th>Company</th>
+                        <th>Date Earned</th>
+                        <th>Expiration Date</th>
+                      </tr>
+                    </thead>
+
+                    <tbody *ngFor="let cert of user.certifications">
+                      <tr
+                        data-toggle="collapse"
+                        class="accordion-toggle"
+                        data-target="#demo"
+                      >
+                        <td>{{ cert.name }}</td>
+                        <td>{{ cert.company }}</td>
+                        <td>{{ cert.dateObtained }}</td>
+                        <td>{{ cert.dateExpiration }}</td>
+                        <td>
+                          <a href="#" class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-cog"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
