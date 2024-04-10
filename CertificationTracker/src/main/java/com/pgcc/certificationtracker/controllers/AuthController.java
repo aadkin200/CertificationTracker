@@ -58,18 +58,38 @@ public class AuthController {
 
 	  @PostMapping("/signup")
 	  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+		  System.out.println(signUpRequest.getUsername() + "Username in Signup Post mapping-------------------1");
 	    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 	      return ResponseEntity.badRequest().body("Error: Username is already taken!");
 	    }
 	    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 	      return ResponseEntity.badRequest().body("Error: Email is already in use!");
 	    }
+	    System.out.println(signUpRequest.getUsername() + "Username in Signup Post mapping-------------------2");
 	    
 	    
 	    User user = new User(signUpRequest.getUsername(),
 	                         signUpRequest.getEmail(),
+	                         signUpRequest.getFirstName(),
+	                         signUpRequest.getLastName(),
 	                         encoder.encode(signUpRequest.getPassword()));
-	    userRepository.save(user);
-	    return ResponseEntity.ok("User registered successfully!");
+	    System.out.println(signUpRequest.getUsername() + "Username in Signup Post mapping-------------------3");
+	    userRepository.saveAndFlush(user);
+	    System.out.println(signUpRequest.getUsername() + "Username in Signup Post mapping-------------------4");
+	    System.out.println("--");
+	    System.out.println(user.getPassword() + "password in signup Post mapping------------------------------------pass");
+	    Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signUpRequest.getUsername(), signUpRequest.getPassword()));
+	    System.out.println(signUpRequest.getUsername() + "Username in Signup Post mapping-------------------5");
+	    SecurityContextHolder.getContext().setAuthentication(authentication);
+	    String jwt = jwtUtils.generateJwtToken(authentication);
+	    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+	    System.out.println(user.getUsername() + "Username in SIGNUP --------------------------");
+	    System.out.println(user.getPassword() + "password in SIGNUP --------------------------");
+	    System.out.println();
+	    System.out.println();
+	    return ResponseEntity.ok(new JwtResponse(jwt,
+	            userDetails.getId(),
+	            userDetails.getUsername(),
+	            userDetails.getEmail()));
 	  }
 }

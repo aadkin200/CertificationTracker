@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
             localStorage.getItem('id_token')
         );
         console.log('LoginComponet.login(): user logged in');
-        this.router.navigateByUrl('/user-feed');
+        this.router.navigateByUrl('/certifications');
       },
       (fail) => {
         this.router.navigateByUrl('/home');

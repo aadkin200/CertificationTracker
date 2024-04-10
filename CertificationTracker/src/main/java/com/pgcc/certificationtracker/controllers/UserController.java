@@ -28,11 +28,12 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/{username}")
-	public Optional<User> getUserByUsername(@PathVariable("username") String username, Principal principal) {
+	public User getUserByUsername(@PathVariable("username") String username, Principal principal) {
 		System.out.println(principal.getName() + "----------------------------------------------");
-		Optional<User> user = userService.userByUsername(username);
+		Optional<User> user = userService.userByUsername(principal.getName());
+		System.out.println(user.get().getFirstName() + " first name -----------------------------------");
 		
-		return user;
+		return user.get();
 	}
 
 }

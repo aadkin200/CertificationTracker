@@ -25,4 +25,17 @@ export class UserService {
       })
     );
   }
+
+  getUser(): Observable<User> {
+    return this.http
+      .get<User>(
+        `${this.baseUrl}api/private/user/${localStorage.getItem('username')}`
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.error('User.getUser: error Get user');
+          return throwError(err);
+        })
+      );
+  }
 }

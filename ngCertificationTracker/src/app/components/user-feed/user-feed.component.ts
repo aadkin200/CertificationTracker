@@ -50,21 +50,21 @@ export class UserFeedComponent implements OnInit {
         console.log(noUsers);
       }
     );
-    this.loadCerts();
+    //this.loadCerts();
   }
 
-  loadCerts() {
-    this.certServ.getCerts().subscribe(
-      (certs) => {
-        this.certs = certs;
-        this.viewCerts = this.certs.map((x) => x);
-      },
-      (noUsers) => {
-        console.log('Error gettings users from service');
-        console.log(noUsers);
-      }
-    );
-  }
+  // loadCerts() {
+  //   this.certServ.getCerts().subscribe(
+  //     (certs) => {
+  //       this.certs = certs;
+  //       this.viewCerts = this.certs.map((x) => x);
+  //     },
+  //     (noUsers) => {
+  //       console.log('Error gettings users from service');
+  //       console.log(noUsers);
+  //     }
+  //   );
+  // }
 
-  certAssign() {}
+  // certAssign() {}
 }
