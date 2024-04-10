@@ -1,6 +1,6 @@
 package com.pgcc.certificationtracker.services;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService{
 				managedUser.get().setEmail(user.getEmail());
 				managedUser.get().setFirstName(user.getFirstName());
 				managedUser.get().setLastName(user.getLastName());
-				managedUser.get().setUpdatedAt(LocalDateTime.now());
+				managedUser.get().setUpdatedAt(LocalDate.now());
 			}
 			userRepo.saveAndFlush(managedUser.get());
 			

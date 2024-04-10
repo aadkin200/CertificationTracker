@@ -1,6 +1,6 @@
 package com.pgcc.certificationtracker.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,17 +23,17 @@ public class Certification {
 	private String company;
 	private String name;
 	@Column(name="date_obtained")
-	private LocalDateTime dateObtained;
+	private LocalDate dateObtained;
 	@Column(name="date_expiration")
-	private LocalDateTime dateExpiration;
+	private LocalDate dateExpiration;
 	
 	
 	
 	
 	public Certification() {}
 	
-	public Certification(int id, User user, String company, String name, LocalDateTime dateObtained,
-			LocalDateTime dateExpiration) {
+	public Certification(int id, User user, String company, String name, LocalDate dateObtained,
+			LocalDate dateExpiration) {
 		this.id = id;
 		this.user = user;
 		this.company = company;
@@ -65,16 +65,16 @@ public class Certification {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDateTime getDateObtained() {
+	public LocalDate getDateObtained() {
 		return dateObtained;
 	}
-	public void setDateObtained(LocalDateTime dateObtained) {
+	public void setDateObtained(LocalDate dateObtained) {
 		this.dateObtained = dateObtained;
 	}
-	public LocalDateTime getDateExpiration() {
+	public LocalDate getDateExpiration() {
 		return dateExpiration;
 	}
-	public void setDateExpiration(LocalDateTime dateExpiration) {
+	public void setDateExpiration(LocalDate dateExpiration) {
 		this.dateExpiration = dateExpiration;
 	}
 	@Override

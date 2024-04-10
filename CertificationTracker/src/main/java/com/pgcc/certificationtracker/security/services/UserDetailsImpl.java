@@ -24,6 +24,9 @@ public class UserDetailsImpl implements UserDetails {
 
 	  @JsonIgnore
 	  private String password;
+	  
+	  private boolean admin;
+	  private String role;
 
 	  public UserDetailsImpl(int id, String username, String email, String password) {
 	    this.id = id;
@@ -31,8 +34,34 @@ public class UserDetailsImpl implements UserDetails {
 	    this.email = email;
 	    this.password = password;
 	  }
+	  
+	  
 
-	  public static UserDetailsImpl build(User user) {
+	  public boolean isAdmin() {
+		return admin;
+	}
+
+
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+	public static UserDetailsImpl build(User user) {
 	    return new UserDetailsImpl(user.getId(), 
 	                               user.getUsername(), 
 	                               user.getEmail(),

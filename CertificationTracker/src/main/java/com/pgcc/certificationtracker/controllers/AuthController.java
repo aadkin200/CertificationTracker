@@ -2,6 +2,9 @@ package com.pgcc.certificationtracker.controllers;
 
 import jakarta.validation.Valid;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +25,7 @@ import com.pgcc.certificationtracker.security.dto.LoginRequest;
 import com.pgcc.certificationtracker.security.dto.SignupRequest;
 import com.pgcc.certificationtracker.security.jwt.JwtUtils;
 import com.pgcc.certificationtracker.security.services.UserDetailsImpl;
+import com.pgcc.certificationtracker.services.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -32,6 +36,9 @@ public class AuthController {
 
 	  @Autowired
 	  UserRepository userRepository;
+	  
+	  @Autowired
+	  UserService userServ;
 
 	  @Autowired
 	  PasswordEncoder encoder;
@@ -41,6 +48,7 @@ public class AuthController {
 
 	  @PostMapping("/signin")
 	  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+		  Optional<User> user = userServ.userByUsername(loginRequest.getUsername());
 //		  System.out.println("beginning of signing api================================================================");
 //		  System.out.println(loginRequest.getPassword() + " PASSWORD==============================================================");
 //		  System.out.println(loginRequest.getUsername() + " USERNAME==============================================================");
@@ -50,10 +58,16 @@ public class AuthController {
 	    System.out.println("in signin post mapping---------------------------------------------------------------------");
 	    String jwt = jwtUtils.generateJwtToken(authentication);
 	    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+	    System.out.println(userDetails.isAdmin() + " ADMIN IN SIGNIN ----------------------------------++++++++++-------");
+	    
+	    System.out.println(LocalDate.now() + "time-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-==================================----------------");
+	    
 	    return ResponseEntity.ok(new JwtResponse(jwt,
 	            userDetails.getId(),
 	            userDetails.getUsername(),
-	            userDetails.getEmail()));
+	            userDetails.getEmail(),
+	            user.get().isAdmin(),
+	            user.get().getRole()));
 	  }
 
 	  @PostMapping("/signup")
@@ -73,6 +87,7 @@ public class AuthController {
 	                         signUpRequest.getFirstName(),
 	                         signUpRequest.getLastName(),
 	                         encoder.encode(signUpRequest.getPassword()));
+	    user.setRole("Student");
 	    System.out.println(signUpRequest.getUsername() + "Username in Signup Post mapping-------------------3");
 	    userRepository.saveAndFlush(user);
 	    System.out.println(signUpRequest.getUsername() + "Username in Signup Post mapping-------------------4");

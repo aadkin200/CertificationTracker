@@ -1,7 +1,14 @@
 <div class="container roomy">
   <div class="col-md-12">
     <div class="panel panel-default">
-      <div class="panel-heading">{{loginUser.firstName}} {{loginUser.lastName}}</div>
+      <div class="panel-heading">
+        {{ loginUser.firstName }} {{ loginUser.lastName }}
+      </div>
+      <div class="text-right push-down">
+        <button class="btn btn-primary" (click)="flipForm()">
+          <i class="bi bi-plus">Add</i>
+        </button>
+      </div>
       <div class="panel-body">
         <table class="table table-condensed table-striped">
           <thead>
@@ -36,6 +43,64 @@
             </tr>
           </tbody>
         </table>
+
+        <div *ngIf="newForm" class="row">
+          <form>
+            <div class="row">
+              <div class="col-md-2 space-1">
+                <label class="form-label" for="name"></label>
+                <input
+                  for="name"
+                  name="name"
+                  type="text"
+                  [(ngModel)]="newCert.name"
+                />
+              </div>
+
+              <div class="col-md-2 space-2">
+                <label class="form-label" for="company"></label>
+                <input
+                  for="company"
+                  name="company"
+                  type="text"
+                  [(ngModel)]="newCert.company"
+                />
+              </div>
+
+              <div class="col-md-2 space-3">
+                <label class="form-label" for="dateEarned"></label>
+                <input
+                  for="dateObtained"
+                  name="dateObtained"
+                  type="date"
+                  [(ngModel)]="newCert.dateObtained"
+                />
+              </div>
+
+              <div class="col-md-2">
+                <label class="form-label" for="dateExpiration"> </label>
+                <input
+                  for="dateExpiration"
+                  name="dateExpiration"
+                  type="date"
+                  [(ngModel)]="newCert.dateExpiration"
+                />
+              </div>
+            </div>
+            <button
+              (click)="createCertification()"
+              class="btn btn-primary scooch-down"
+            >
+              Add
+            </button>
+            <button
+              (click)="flipFormOff()"
+              class="btn btn-danger scooch-right scooch-down"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

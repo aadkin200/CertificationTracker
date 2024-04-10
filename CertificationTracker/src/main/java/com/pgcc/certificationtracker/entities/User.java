@@ -1,6 +1,6 @@
 package com.pgcc.certificationtracker.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,9 +35,9 @@ public class User {
 	private String lastName;
 	private boolean admin;
 	@Column(name="created_at")
-	private LocalDateTime createdAt;
+	private LocalDate createdAt;
 	@Column(name="updated_at")
-	private LocalDateTime updatedAt;
+	private LocalDate updatedAt;
 	@OneToMany(mappedBy="user")
 	private List<Certification> certifications;
 	private boolean active;
@@ -59,6 +59,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
+		this.role = "Student";
 	}
 
 
@@ -78,7 +79,7 @@ public class User {
 	}
 	
 	public User(int id, String username, String password, String email, String firstName, String lastName,
-			boolean admin, LocalDateTime createdAt, LocalDateTime updatedAt) {
+			boolean admin, LocalDate createdAt, LocalDate updatedAt) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -86,12 +87,12 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.admin = admin;
-		this.createdAt = createdAt;
+		this.createdAt = LocalDate.now();
 		this.updatedAt = updatedAt;
 	}
 	
 	public User(int id, String username, String password, String email, String firstName, String lastName,
-			boolean admin, LocalDateTime createdAt, LocalDateTime updatedAt, List<Certification> certifications) {
+			boolean admin, LocalDate createdAt, LocalDate updatedAt, List<Certification> certifications) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -100,7 +101,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.admin = admin;
-		this.createdAt = createdAt;
+		this.createdAt = LocalDate.now();
 		this.updatedAt = updatedAt;
 		this.certifications = certifications;
 	}
@@ -161,16 +162,16 @@ public class User {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	public LocalDateTime getCreatedAt() {
+	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(LocalDateTime createdAt) {
+	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
 	}
-	public LocalDateTime getUpdatedAt() {
+	public LocalDate getUpdatedAt() {
 		return updatedAt;
 	}
-	public void setUpdatedAt(LocalDateTime updatedAt) {
+	public void setUpdatedAt(LocalDate updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 	public boolean isActive() {

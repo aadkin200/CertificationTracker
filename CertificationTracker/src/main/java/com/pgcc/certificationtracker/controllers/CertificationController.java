@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +26,7 @@ public class CertificationController {
 	@Autowired
 	private CertificationService certServ;
 	
+	
 	@GetMapping("/certs")
 	public List<Certification> index() {
 		return certServ.getAllCerts();
@@ -33,6 +36,12 @@ public class CertificationController {
 	public List<Certification> getCertificationByUsername(@PathVariable("username") String username, Principal principal) {
 		
 		return null;
+	}
+	
+	@PostMapping("/certs/{username}")
+	public Certification addCertification(@PathVariable("username") String username, @RequestBody Certification cert,  Principal principal) {
+		Certification newCert = certServ.create(username, cert);
+		return newCert;
 	}
 
 }
