@@ -1,5 +1,7 @@
+<img src="../../../assets/media/pictures/pgcc-frontpage.png" alt="" class="rounded mx-auto d-block scoot-down">
+
 <div class="halfway">
-  <form>
+  <form ngNativeValidate>
     <!-- Email input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="form2Example1">Username</label>
@@ -9,6 +11,7 @@
         class="form-control"
         [(ngModel)]="loginUser.username"
         name="username"
+        required
       />
     </div>
 
@@ -21,6 +24,7 @@
         id="form2Example2"
         class="form-control"
         name="password"
+        required
       />
     </div>
 

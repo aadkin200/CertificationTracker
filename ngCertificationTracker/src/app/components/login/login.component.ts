@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
             localStorage.getItem('id_token')
         );
         console.log('LoginComponet.login(): user logged in');
+        //this.loginUser = loggedIn;
         this.router.navigateByUrl('/certifications');
       },
       (fail) => {

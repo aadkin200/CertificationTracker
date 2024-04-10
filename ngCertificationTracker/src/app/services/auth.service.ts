@@ -13,26 +13,14 @@ export class AuthService {
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private router: Router) {}
+
   login(username: string, password: string) {
     var user = new User();
     user.username = username;
     user.password = password;
-    console.log('made it to auth.login');
-    console.log(username + 'auth.login email---------------------------');
-    console.log(
-      password + 'auth.login password-------------------------------'
-    );
-    console.log(
-      'rest api pinged ===================================================' +
-        this.baseUrl +
-        'api/auth/signin'
-    );
     return this.http.post<User>(this.baseUrl + 'api/auth/signin', user).pipe(
       tap((res) => {
-        console.log('before set session');
         this.setSession(res);
-        console.log('after set session');
-        console.log(res);
       })
     );
   }
@@ -42,30 +30,23 @@ export class AuthService {
       tap((res) => {
         this.setSession(res);
       })
-    )
+    );
   }
 
   private setSession(authResult: any) {
-    //const expiresAt = moment().add(authResult.expiresIn, 'second');
-    console.log('setSession------------------------------------------');
-    console.log(authResult.accessToken);
-    //console.log(authResult.expiresIn);
-
     localStorage.setItem('id_token', authResult.accessToken);
     localStorage.setItem('username', authResult.username);
-    //localStorage.setItem('expires_at', JSON.stringify(authResult.expiresIn));
+    localStorage.setItem('admin', authResult.admin);
+    localStorage.setItem('role', authResult.role);
     let key = localStorage.getItem('id_token');
-    //console.log(key + '-----------keyyyyyyyyyyyyyyyyyyy');
   }
 
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('username');
-  }
-
-  public isLoggedIn() {
-    //return moment().isBefore(this.getExpiration());
+    localStorage.removeItem('admin');
+    localStorage.removeItem('role');
   }
 
   public checkLogin() {
@@ -75,13 +56,4 @@ export class AuthService {
     return false;
   }
 
-  isLoggedOut() {
-    //return !this.isLoggedIn();
-  }
-
-  getExpiration() {
-    //const expiration = localStorage.getItem('expires_at');
-    //const expiresAt = JSON.parse(expiration);
-    //return moment(expiresAt);
-  }
 }

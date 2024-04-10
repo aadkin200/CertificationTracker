@@ -18,11 +18,11 @@ import {
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CertificationComponent } from './components/certification/certification.component';
-import { AllCertificationComponent } from './components/all-certification/all-certification.component';
 import { UserFeedComponent } from './components/user-feed/user-feed.component';
 import { AuthInterceptor } from './intercept/auth-interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { InsightsDashboardComponent } from './components/insights-dashboard/insights-dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +32,10 @@ import { InsightsDashboardComponent } from './components/insights-dashboard/insi
     NavbarComponent,
     ProfileComponent,
     CertificationComponent,
-    AllCertificationComponent,
     UserFeedComponent,
     SignUpComponent,
-    InsightsDashboardComponent
+    InsightsDashboardComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

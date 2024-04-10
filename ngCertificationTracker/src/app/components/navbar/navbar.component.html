@@ -23,41 +23,50 @@
   style="background-color: #002c77"
   class="navbar navbar-expand-lg navbar-light sticky"
 >
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item scooch">
         <a class="nav-link text-white" href="#">Home</a>
       </li>
-      <li *ngIf="loggedIn()" class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle text-white"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Certification Menu
-        </a>
-        <div
-          style="background-color: #002c77"
-          class="dropdown-menu"
-          aria-labelledby="navbarDropdown"
-        >
-          <a class="dropdown-item text-white" [routerLink]="['certifications']"
-            >Your Certifications</a
-          >
+      <div *ngIf="isStaff()">
+        <li *ngIf="loggedIn()" class="nav-item dropdown">
           <a
-            class="dropdown-item text-white"
-            [routerLink]="['insight-dashboard']"
-            >Certificate Insights Dashboard</a
+            class="nav-link dropdown-toggle text-white"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
-          <a class="dropdown-item text-white" [routerLink]="['user-feed']"
-            >All Certifications</a
+            Certification Menu
+          </a>
+          <div
+            style="background-color: #002c77"
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdown"
           >
-        </div>
-      </li>
+            <a class="dropdown-item text-white" [routerLink]="['certifications']"
+              >Your Certifications</a
+            >
+            <a
+              class="dropdown-item text-white"
+              [routerLink]="['insight-dashboard']"
+              >Certificate Insights Dashboard</a
+            >
+            <a class="dropdown-item text-white" [routerLink]="['user-feed']"
+              >All Certifications</a
+            >
+          </div>
+        </li>
+      </div>
+      <div *ngIf="isStudent()">
+        <a class="text-white nav-link" [routerLink]="['certifications']"
+              >Your Certifications</a
+            >
+      </div>
+      
     </ul>
 
     <!-- <div *ngIf="loggedIn()">
@@ -65,6 +74,12 @@
         >profile</a
       >
     </div> -->
+
+    <div *ngIf="isAdmin()">
+      <a class="nav-link text-white scooch-left-tiny" [routerLink]="['admin']"
+        >Admin</a
+      >
+    </div>
 
     <li *ngIf="loggedIn()" class="nav-item dropdown list-unstyled scooch-left">
       <a
@@ -86,7 +101,10 @@
         <a class="dropdown-item text-white" [routerLink]="['profile']"
           >Profile</a
         >
-        <a class="dropdown-item text-white" [routerLink]="['home']" (click)="logout()"
+        <a
+          class="dropdown-item text-white"
+          [routerLink]="['home']"
+          (click)="logout()"
           >Sign Out</a
         >
       </div>

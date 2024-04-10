@@ -1,5 +1,6 @@
+<img src="../../../assets/media/pictures/pgcc-frontpage.png" alt="" class="rounded mx-auto d-block scoot-down">
 <div class="halfway">
-  <form>
+  <form ngNativeValidate>
     <!-- Email input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="username">Username</label>
@@ -9,6 +10,7 @@
         class="form-control"
         [(ngModel)]="signupUser.username"
         name="username"
+        required
       />
     </div>
 
@@ -19,7 +21,8 @@
         id="firstName"
         class="form-control"
         [(ngModel)]="signupUser.firstName"
-        name="username"
+        name="firstName"
+        required
       />
     </div>
 
@@ -30,7 +33,8 @@
         id="lastName"
         class="form-control"
         [(ngModel)]="signupUser.lastName"
-        name="username"
+        name="lastName"
+        required
       />
     </div>
 
@@ -41,7 +45,8 @@
         id="email"
         class="form-control"
         [(ngModel)]="signupUser.email"
-        name="username"
+        name="email"
+        required
       />
     </div>
 
@@ -54,6 +59,7 @@
         id="password"
         class="form-control"
         name="password"
+        required
       />
     </div>
 
@@ -68,7 +74,7 @@
 
     <!-- Register buttons -->
     <div class="text-center">
-      <p>Not a member? <a [routerLink]="['sign-up']">Register</a></p>
+      <p>Already a member? <a [routerLink]="['']">Sign in</a></p>
     </div>
   </form>
 </div>
