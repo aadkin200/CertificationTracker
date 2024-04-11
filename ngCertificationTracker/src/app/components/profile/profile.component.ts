@@ -16,7 +16,11 @@ export class ProfileComponent implements OnInit {
     private userServ: UserService
   ) {}
 
+
+  
   loginUser: User = new User();
+  editedUser: User = new User();
+  isEditingUser = false;
 
   ngOnInit(): void {
     this.loadUser();
@@ -33,4 +37,27 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+  editUser(user: any) {
+    this.editedUser = user;
+    this.isEditingUser = true;
+  }
+
+  stopEditingUser() {
+    this.isEditingUser = false;
+  }
+
+  updateUser(user: User) {
+    this.userServ.update(this.editedUser).subscribe(
+      data=>{
+        this.loadUser();
+      },
+      error => {
+        console.log(error);
+        console.log('error updating user through service');
+      }
+    )
+    this.stopEditingUser();
+  }
+
 }

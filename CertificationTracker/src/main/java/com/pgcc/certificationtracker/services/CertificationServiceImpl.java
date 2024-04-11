@@ -49,8 +49,8 @@ public class CertificationServiceImpl implements CertificationService{
 	}
 
 	@Override
-	public boolean destroy(String username, int trailId) {
-		Certification managedCert = certRepo.findById(trailId).get();
+	public boolean destroy(int certId) {
+		Certification managedCert = certRepo.findById(certId).get();
 		if(managedCert != null) {
 			certRepo.delete(managedCert);
 			return true;

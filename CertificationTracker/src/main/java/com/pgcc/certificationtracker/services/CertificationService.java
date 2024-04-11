@@ -11,6 +11,6 @@ public interface CertificationService {
 	public List<Certification>getCertsById(int id);
 	public Certification create(String username, Certification cert);
 	public Certification update(String username, Certification cert, int certId);
-	public boolean destroy(String username, int trailId);
+	public boolean destroy(int trailId);
 
 }

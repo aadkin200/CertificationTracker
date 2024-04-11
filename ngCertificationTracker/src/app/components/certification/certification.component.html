@@ -9,6 +9,7 @@
           <i class="bi bi-plus">Add</i>
         </button>
       </div>
+      <form id="myform"></form>
       <div class="panel-body">
         <table class="table table-condensed table-striped">
           <thead>
@@ -33,12 +34,73 @@
                   <span class="glyphicon glyphicon-eye-open"></span>
                 </button>
               </td>
-              <td>{{ cert.name }}</td>
-              <td>{{ cert.company }}</td>
-              <td>{{ cert.dateObtained }}</td>
-              <td>{{ cert.dateExpiration }}</td>
-              <button type="button" class="btn btn-secondary">
+              <td *ngIf="cert.id === editedId">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  form="myform"
+                  for="name"
+                  [(ngModel)]="editedCert.name"
+                />
+              </td>
+              <td *ngIf="cert.id === editedId">
+                <input
+                  type="text"
+                  name="company"
+                  id="company"
+                  form="myform"
+                  for="company"
+                  [(ngModel)]="editedCert.company"
+                />
+              </td>
+              <td *ngIf="cert.id === editedId">
+                <input
+                  type="date"
+                  name="dateObtained"
+                  id="dateObtained"
+                  form="myform"
+                  for="dateObtained"
+                  [(ngModel)]="editedCert.dateObtained"
+                />
+              </td>
+              <td *ngIf="cert.id === editedId">
+                <input
+                  type="date"
+                  name="dateExpiration"
+                  id="dateExpiration"
+                  form="myform"
+                  for="dateExpiration"
+                  [(ngModel)]="editedCert.dateExpiration"
+                />
+              </td>
+              <button
+                *ngIf="cert.id === editedId"
+                type="button"
+                class="btn btn-primary text-color-white"
+              >
+                <!-- <i class="bi bi-pen"></i> -->
+                Update
+              </button>
+              <td *ngIf="cert.id !== editedId">{{ cert.name }}</td>
+              <td *ngIf="cert.id !== editedId">{{ cert.company }}</td>
+              <td *ngIf="cert.id !== editedId">{{ cert.dateObtained }}</td>
+              <td *ngIf="cert.id !== editedId">{{ cert.dateExpiration }}</td>
+              <button
+                *ngIf="cert.id !== editedId"
+                (click)="assignNumber(cert)"
+                type="button"
+                class="btn btn-secondary push-right"
+              >
                 <i class="bi bi-pen"></i>
+              </button>
+              <button
+                *ngIf="cert.id !== editedId"
+                (click)="deleteCertification(cert)"
+                type="button"
+                class="btn btn-secondary"
+              >
+                <i class="bi bi-trash"></i>
               </button>
             </tr>
           </tbody>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,11 @@ public class CertificationController {
 	public Certification addCertification(@PathVariable("username") String username, @RequestBody Certification cert,  Principal principal) {
 		Certification newCert = certServ.create(username, cert);
 		return newCert;
+	}
+	
+	@PutMapping("/cert/")
+	public boolean deleteCertification(@RequestBody Certification cert) {
+		return certServ.destroy(cert.getId());
 	}
 
 }

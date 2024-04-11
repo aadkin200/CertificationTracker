@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CertificationService } from '../../services/certification.service';
 import { User } from '../../models/user';
 import { FormBuilder } from '@angular/forms';
+import { error } from 'console';
 
 @Component({
   selector: 'app-certification',
@@ -16,7 +17,11 @@ export class CertificationComponent implements OnInit {
   userCerts: Certification[] = [];
   loginUser: User = new User();
   newCert: Certification = new Certification();
+
   newForm = false;
+  editedId: number = -1;
+  beingEdited: boolean = false;
+  editedCert: Certification = new Certification();
 
   constructor(
     private auth: AuthService,
@@ -25,6 +30,8 @@ export class CertificationComponent implements OnInit {
     private certServ: CertificationService,
     private fb: FormBuilder
   ) {}
+
+  
 
   ngOnInit(): void {
     this.loadUser();
@@ -67,6 +74,24 @@ export class CertificationComponent implements OnInit {
 
   flipFormOff() {
     this.newForm = this.newForm = false;
+  }
+
+  deleteCertification(cert: Certification) {
+    this.certServ.destroy(cert).subscribe(
+      data=>{
+        this.loadUser();
+      },
+      error=>{
+        console.error('error disabling user through service');
+      }
+    )
+
+  }
+
+  assignNumber(cert: Certification) {
+    this.editedCert = cert;
+    this.editedId = cert.id;
+    this.beingEdited = true;
   }
 
 }

@@ -38,4 +38,15 @@ export class UserService {
         })
       );
   }
+
+
+  update(user: User):Observable<User>{
+    return this.http.put<User>(this.baseUrl + 'api/private/user', user).pipe(
+      catchError((err:any) =>{
+        console.error('User.update: error updating user');
+        return throwError(err);
+      })
+    )
+  }
+
 }

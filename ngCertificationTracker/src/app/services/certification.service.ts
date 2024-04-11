@@ -12,6 +12,7 @@ import { tap } from 'rxjs/operators';
 export class CertificationService {
   baseUrl = environment.baseUrl;
   newCert: Certification = new Certification();
+  deleteCert: Certification = new Certification();
 
   constructor(private auth: AuthService, private http: HttpClient) {}
 
@@ -41,4 +42,15 @@ export class CertificationService {
         })
       );
   }
+
+  destroy(cert: Certification) {
+    return this.http.put<Certification>(this.baseUrl + 'api/private/certification/cert/', cert).pipe(
+      catchError((err: any) =>{
+        console.log(err);
+        return throwError('error deleting');
+      })
+    )
+  }
+
+
 }
