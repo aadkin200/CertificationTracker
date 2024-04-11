@@ -10,7 +10,7 @@ public interface CertificationService {
 	public List<Certification> getAllCerts();
 	public List<Certification>getCertsById(int id);
 	public Certification create(String username, Certification cert);
-	public Certification update(String username, Certification cert, int certId);
+	public Certification update(Certification cert);
 	public boolean destroy(int trailId);
 
 }

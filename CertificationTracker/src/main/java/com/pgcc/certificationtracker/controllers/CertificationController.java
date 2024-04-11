@@ -49,5 +49,10 @@ public class CertificationController {
 	public boolean deleteCertification(@RequestBody Certification cert) {
 		return certServ.destroy(cert.getId());
 	}
+	
+	@PutMapping("/cert/cert")
+	public Certification updateCertification(@RequestBody Certification cert) {
+		return certServ.update(cert);
+	}
 
 }

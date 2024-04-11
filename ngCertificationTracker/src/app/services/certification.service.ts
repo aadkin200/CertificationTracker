@@ -52,5 +52,14 @@ export class CertificationService {
     )
   }
 
+  update(cert: Certification) {
+    return this.http.put<Certification>(this.baseUrl + 'api/private/certification/cert/cert', cert).pipe(
+      catchError((err: any) =>{
+        console.log(err);
+        return throwError('error updating');
+      })
+    )
+  }
+
 
 }

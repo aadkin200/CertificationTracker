@@ -94,4 +94,19 @@ export class CertificationComponent implements OnInit {
     this.beingEdited = true;
   }
 
+  updateCertification(cert: Certification) {
+    this.certServ.update(this.editedCert).subscribe(
+      data=>{
+        this.loadUser();
+      },
+      error=>{
+        console.error(error);
+        console.error('error updating cert through service');
+
+      }
+    )
+    this.editedId =-1;
+    this.beingEdited=false;
+  }
+
 }
