@@ -1,39 +1,100 @@
-<div class="container roomy">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">Admin View</div>
-      <div class="panel-body">
-        <table class="table table-condensed table-striped">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Fist Name</th>
-              <th>Last Name</th>
-              <th>Role</th>
-              <th></th>
-            </tr>
-          </thead>
+<div *ngIf="editedId === -1">
+  <div class="container roomy">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Admin View</div>
+        <div class="panel-body">
+          <table class="table table-condensed table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Fist Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th></th>
+              </tr>
+            </thead>
 
-          <tbody *ngFor="let user of viewUsers">
-            <tr
-              data-toggle="collapse"
-              attr.data-target="#demo{{ user.id }}"
-              class="accordion-toggle"
-            >
-              <td>
-                <button class="btn btn-default btn-xs">
-                  <span class="glyphicon glyphicon-eye-open"></span>
+            <tbody *ngFor="let user of viewUsers">
+              <tr
+                data-toggle="collapse"
+                attr.data-target="#demo{{ user.id }}"
+                class="accordion-toggle"
+              >
+                <td>
+                  <button class="btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                  </button>
+                </td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.role }}</td>
+                <button
+                  (click)="assignEditId(user.id)"
+                  type="button"
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-pen"></i>
                 </button>
-              </td>
-              <td>{{ user.firstName }}</td>
-              <td>{{ user.lastName }}</td>
-              <td>{{ user.role }}</td>
-              <button type="button" class="btn btn-secondary">
-                <i class="bi bi-pen"></i>
-              </button>
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="editedId !== -1">
+  <div class="container roomy">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Admin View</div>
+        <div class="panel-body">
+          <table class="table table-condensed table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Fist Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody *ngFor="let user of viewUsers">
+              <tr
+                data-toggle="collapse"
+                attr.data-target="#demo{{ user.id }}"
+                class="accordion-toggle"
+              >
+                <td>
+                  <button class="btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                  </button>
+                </td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td *ngIf="user.id !== editedId">{{ user.role }}</td>
+                <td *ngIf="user.id === editedId">
+                  <select [(ngModel)]="user.role" name="role" id="role">
+                    <option value="Staff">Staff</option>
+                    <option value="Student">Student</option>
+                  </select>
+                </td>
+                <button *ngIf="user.id !== editedId" type="button" class="btn btn-secondary">
+                  <i class="bi bi-pen"></i>
+                </button>
+                <button (click)="updateRole(user)" class="btn btn-primary" *ngIf="user.id === editedId" type="submit">
+                  Submit
+                </button>
+                <button (click)="defaultValueEdit()" class="btn btn-danger" *ngIf="user.id === editedId" type="submit">
+                  Cancel
+                </button>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

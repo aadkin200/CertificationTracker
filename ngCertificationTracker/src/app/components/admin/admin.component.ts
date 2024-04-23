@@ -13,6 +13,9 @@ import { User } from '../../models/user';
 export class AdminComponent implements OnInit {
   users: User[] = [];
   viewUsers: User[] = [];
+  editedId = -1;
+
+  edited: User = new User();
 
   constructor(
     private auth: AuthService,
@@ -23,7 +26,6 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-    throw new Error('Method not implemented.');
   }
 
   loadUsers() {
@@ -37,4 +39,29 @@ export class AdminComponent implements OnInit {
       }
     );
   }
+
+
+  assignEditId(num: number) {
+    this.editedId = num;
+  }
+
+  defaultValueEdit() {
+    this.editedId = -1;
+  }
+
+  updateRole(user: User) {
+    console.log(user);
+    this.userServ.update(user).subscribe(
+      data=>{
+        this.defaultValueEdit();
+        this.loadUsers();
+      },
+      error=>{
+        console.error(error);
+        console.error('error updating user through service');
+      }
+    )
+
+  }
+
 }

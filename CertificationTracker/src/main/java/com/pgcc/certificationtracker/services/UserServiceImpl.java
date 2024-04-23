@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService{
 				managedUser.get().setFirstName(user.getFirstName());
 				managedUser.get().setLastName(user.getLastName());
 				managedUser.get().setUpdatedAt(LocalDate.now());
+				managedUser.get().setRole(user.getRole());
 			}
 			userRepo.saveAndFlush(managedUser.get());
 			
