@@ -31,8 +31,6 @@ export class CertificationComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-  
-
   ngOnInit(): void {
     this.loadUser();
     //throw new Error('Method not implemented.');
@@ -60,10 +58,10 @@ export class CertificationComponent implements OnInit {
       },
       (fail) => {
         this.router.navigateByUrl('/certifications');
-        location.reload();
         console.error(
           'Error in certification component -- createCertification()'
         );
+        location.reload();
       }
     );
   }
@@ -78,14 +76,13 @@ export class CertificationComponent implements OnInit {
 
   deleteCertification(cert: Certification) {
     this.certServ.destroy(cert).subscribe(
-      data=>{
+      (data) => {
         this.loadUser();
       },
-      error=>{
+      (error) => {
         console.error('error disabling user through service');
       }
-    )
-
+    );
   }
 
   assignNumber(cert: Certification) {
@@ -95,18 +92,19 @@ export class CertificationComponent implements OnInit {
   }
 
   updateCertification(cert: Certification) {
+    console.log(cert);
+    console.log(this.editedCert);
     this.certServ.update(this.editedCert).subscribe(
-      data=>{
+      (data) => {
+        console.log(data);
         this.loadUser();
       },
-      error=>{
+      (error) => {
         console.error(error);
         console.error('error updating cert through service');
-
       }
-    )
-    this.editedId =-1;
-    this.beingEdited=false;
+    );
+    this.editedId = -1;
+    this.beingEdited = false;
   }
-
 }

@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pgcc.certificationtracker.entities.Certification;
 import com.pgcc.certificationtracker.services.CertificationService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/private/certification")
@@ -52,6 +50,7 @@ public class CertificationController {
 	
 	@PutMapping("/cert/cert")
 	public Certification updateCertification(@RequestBody Certification cert) {
+		System.out.println("update cert method----------------" + cert.getDateObtained());
 		return certServ.update(cert);
 	}
 

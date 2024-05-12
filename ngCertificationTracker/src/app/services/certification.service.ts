@@ -28,7 +28,7 @@ export class CertificationService {
   }
 
   newCertification(cert: Certification) {
-    console.log(cert.company+'-------Company in service----------------');
+    console.log(cert.company + '-------Company in service----------------');
     return this.http
       .post<Certification>(
         this.baseUrl +
@@ -44,22 +44,32 @@ export class CertificationService {
   }
 
   destroy(cert: Certification) {
-    return this.http.put<Certification>(this.baseUrl + 'api/private/certification/cert/', cert).pipe(
-      catchError((err: any) =>{
-        console.log(err);
-        return throwError('error deleting');
-      })
-    )
+    return this.http
+      .put<Certification>(
+        this.baseUrl + 'api/private/certification/cert/',
+        cert
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('error deleting');
+        })
+      );
   }
 
   update(cert: Certification) {
-    return this.http.put<Certification>(this.baseUrl + 'api/private/certification/cert/cert', cert).pipe(
-      catchError((err: any) =>{
-        console.log(err);
-        return throwError('error updating');
-      })
-    )
+    console.log('in service now---');
+    console.log(cert);
+    return this.http
+      .put<Certification>(
+        this.baseUrl + 'api/private/certification/cert/cert',
+        cert
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('error updating');
+        })
+      );
   }
-
-
 }

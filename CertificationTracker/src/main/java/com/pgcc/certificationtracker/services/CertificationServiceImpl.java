@@ -40,9 +40,14 @@ public class CertificationServiceImpl implements CertificationService{
 
 	@Override
 	public Certification update(Certification cert) {
+		System.out.println("update cert within serviceimpl----------------------" + cert.getDateObtained());
 		Certification managedCert = certRepo.findById(cert.getId()).get();
+		System.out.println("update cert within serviceimpl managed cert----------" + cert.getDateObtained());
 		if(managedCert != null) {
 			managedCert.setDateExpiration(cert.getDateExpiration());
+			managedCert.setDateObtained(cert.getDateObtained());
+			managedCert.setName(cert.getName());
+			managedCert.setCompany(cert.getCompany());
 			return certRepo.saveAndFlush(managedCert);
 		}
 		return managedCert;

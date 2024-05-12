@@ -11,6 +11,7 @@ import { InsightsDashboardComponent } from './components/insights-dashboard/insi
 import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
+  
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'certifications', component: CertificationComponent },
